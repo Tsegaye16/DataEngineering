@@ -3,12 +3,12 @@ import os
 import re
 
 def capture_face_photos(image_name, num_photos):
-    label = ""  # You can customize this label as needed
+    label = ""  
     msg = 'Dataset generated successfully.'
 
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     output_folder = 'E:/DataEngineering/face_recognition/data'
-    # 
+  
 
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -55,7 +55,7 @@ def identify_user(known_faces_dir):
     video_capture = cv2.VideoCapture(0)
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-    while True:  # Run indefinitely
+    while True:  
         ret, frame = video_capture.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
@@ -81,7 +81,7 @@ def identify_user(known_faces_dir):
 
         cv2.imshow('Video', frame)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):  # Exit on 'q' key press
+        if cv2.waitKey(1) & 0xFF == ord('q'):  
             break
 
     video_capture.release()
@@ -94,15 +94,15 @@ import os
 import re
 
 def train_and_identify():
-    # Step 1: User enters the name and number of images to capture
+    
     name = input("Enter the name of the person to train: ")
     num_images = int(input("Enter the number of images to capture: "))
 
-    # Step 2: Capture face photos for training
+ 
     print("Capturing face photos for training...")
     capture_face_photos(name, num_images)
 
-    # Step 3: Identify the user
+  
     print("Identifying the user...")
     identify_user('C:/Users/Tsegaye/Documents/ML/data')
 
